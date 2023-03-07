@@ -4,7 +4,14 @@ import Searchbar from 'components/Searchbar';
 import ImageGallery from 'components/ImageGallery';
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
-import { Conteiner, ErrorText, SpanText } from './App.styled';
+import {
+  Conteiner,
+  ErrorText,
+  SpanText,
+  ArrowUP,
+  ArrowUPLink,
+  Anchor,
+} from './App.styled';
 
 const errorMessages = {
   noImages: 'Whoops, something went wrong! Please try again later!',
@@ -61,6 +68,7 @@ class App extends Component {
     return (
       <Conteiner>
         <Searchbar onSubmit={this.handleFormSubmit} />
+        <Anchor id="header"></Anchor>
         <ImageGallery images={images} />
         {isLoading && <Loader />}
         {(showBtn && <Button onClick={this.onLoadMore} />) ||
@@ -71,6 +79,9 @@ class App extends Component {
             </ErrorText>
           ))}
         {isError && <h2>{isError}</h2>}
+        <ArrowUP type="button">
+          <ArrowUPLink href="#header">UP</ArrowUPLink>
+        </ArrowUP>
       </Conteiner>
     );
   }
