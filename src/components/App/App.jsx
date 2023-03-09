@@ -4,6 +4,8 @@ import Searchbar from 'components/Searchbar';
 import ImageGallery from 'components/ImageGallery';
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Conteiner,
   ErrorText,
@@ -20,7 +22,6 @@ const App = () => {
   const [showBtn, setShowBtn] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     if (query === '') {
@@ -34,21 +35,35 @@ const App = () => {
           return;
         }
         setImages(images => [...images, ...hits]);
+        if (page === 1) {
+          toast.success(`We find ${totalHits} results for your query`);
+        }
+        if (page > 1 && page >= Math.ceil(totalHits / 12)) {
+          setShowBtn(false);
+          return toast.info(
+            "We're sorry, but you've reached the end of search results."
+          );
+        }
         setShowBtn(page < Math.ceil(totalHits / 12));
         return;
       })
-      .catch(() => setIsError(`Something went wrong! Please try again later!`))
+      .catch(() => toast.error(`Something went wrong! Please try again later!`))
       .finally(() => setIsLoading(false));
   }, [page, query]);
 
-  const handleFormSubmit = query => {
-    setQuery(query);
+  const handleFormSubmit = searcQquery => {
+    if (query === searcQquery) {
+      return toast.warn(
+        'Your current request is already displayed now. Enter a new query'
+      );
+    } else {
+      setQuery(searcQquery);
+    }
     setImages([]);
     setPage(1);
     setShowBtn(false);
     setIsEmpty(false);
     setIsLoading(false);
-    setIsError(null);
   };
 
   const onLoadMore = () => {
@@ -64,11 +79,11 @@ const App = () => {
       {(showBtn && <Button onClick={onLoadMore} />) ||
         (isEmpty && (
           <ErrorText>
-            There are no pictures with the name <SpanText>{query} </SpanText>
-            in our database, try another request!
+            There are no pictures with the name <SpanText>{query}</SpanText> in
+            our database, try another request!
           </ErrorText>
         ))}
-      {isError && <h2>{isError}</h2>}
+      <ToastContainer autoClose={2000} />
       <ArrowUP type="button">
         <ArrowUPLink href="#header">UP</ArrowUPLink>
       </ArrowUP>

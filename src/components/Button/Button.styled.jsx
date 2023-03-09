@@ -23,8 +23,7 @@ export const Btn = styled.button`
     font-size: 20px;
     font-weight: 600;
   }
-  &:hover,
-  :focus {
+  &:hover {
     background: #f4a460;
     transition: background 0.45s linear;
   }

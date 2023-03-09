@@ -32,7 +32,7 @@ const Modal = ({ children, onClose }) => {
   );
 };
 
-Modal.PropTypes = {
+Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };

@@ -16,7 +16,33 @@ export const ErrorText = styled.h2`
   text-align: center;
 `;
 export const SpanText = styled.span`
-  color: #2f4f4f;
+  color: #b22222;
+  font-size: 22px;
+  text-decoration: underline;
+`;
+export const BuutonUP = styled.button`
+  position: fixed;
+  bottom: 35px;
+  right: 35px;
+  border: none;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  // align-items: center;
+  // justify-content: center;
+  // font-size: 14px;
+  // font-weight: 600;
+  // background: #fff;
+  // width: 30px;
+  // height: 30px;
+  // border-radius: 50%;
+  // box-shadow: 1px 2px 4px 1px #72695a;
+  // transition: box-shadow 0.45s linear;
+  // &:hover {
+  //   box-shadow: 0px 2px 6px 2px #72695a;
+  //   transition: box-shadow 0.45s linear;
+  // }
 `;
 export const ArrowUP = styled.button`
   position: fixed;
