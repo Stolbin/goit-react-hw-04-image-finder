@@ -4,6 +4,7 @@ import Searchbar from 'components/Searchbar';
 import ImageGallery from 'components/ImageGallery';
 import { Button } from 'components/Button/Button';
 import Loader from 'components/Loader/Loader';
+import { FcUp } from "react-icons/fc";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -85,7 +86,9 @@ const App = () => {
         ))}
       <ToastContainer autoClose={2000} />
       <ArrowUP type="button">
-        <ArrowUPLink href="#header">UP</ArrowUPLink>
+        <ArrowUPLink href="#header">
+        <FcUp style={{ width: 24, height: 24 }} />
+        </ArrowUPLink>
       </ArrowUP>
     </Conteiner>
   );
